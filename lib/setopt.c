@@ -2301,13 +2301,15 @@ static CURLcode vsetopt(struct Curl_easy *data, CURLoption option,
 
   case CURLOPT_ADDRESS_SCOPE:
     /*
-     * We always get longs when passed plain numericals, but for this value we
-     * know that an unsigned int will always hold the value so we blindly
-     * typecast to this type
+     * Use this scope id when using IPv6
+     * We always get longs when passed plain numericals so we should check
+     * that the value fits into an unsigned integer
      */
     arg = va_arg(param, long);
-    if((arg < 0) || (arg > 0xf))
+#if SIZEOF_LONG > 4
+    if((arg < 0) || (arg > UINT_MAX))
       return CURLE_BAD_FUNCTION_ARGUMENT;
+#endif
     data->set.scope_id = curlx_sltoui(arg);
     break;
 
