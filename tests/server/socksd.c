@@ -774,11 +774,11 @@ static bool incoming(curl_socket_t listenfd)
       if(c[i].used) {
         curl_socket_t fd = c[i].clientfd;
         FD_SET(fd, &fds_read);
-        if(fd > maxfd)
+        if((int)fd > maxfd)
           maxfd = (int)fd;
         fd = c[i].remotefd;
         FD_SET(fd, &fds_read);
-        if(fd > maxfd)
+        if((int)fd > maxfd)
           maxfd = (int)fd;
       }
     }
