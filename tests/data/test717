@@ -28,6 +28,7 @@ Funny-head: yesyes
 method 2
 user uz3r
 password p4ssworm
+backendport %HTTPPORT
 </servercmd>
 </reply>
 
@@ -44,8 +45,10 @@ all_proxy=socks5://uz3r:p4ssworm@%HOSTIP:%SOCKSPORT
  <name>
 SOCKS5 proxy auth
  </name>
+
+# target a port that won't work without the SOCKS magic
  <command>
-http://%HOSTIP:%HTTPPORT/717
+http://%HOSTIP:1/717
 </command>
 </client>
 
@@ -57,7 +60,7 @@ http://%HOSTIP:%HTTPPORT/717
 </strip>
 <protocol>
 GET /717 HTTP/1.1
-Host: %HOSTIP:%HTTPPORT
+Host: %HOSTIP:1
 Accept: */*
 
 </protocol>

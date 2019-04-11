@@ -30,8 +30,10 @@ all_proxy=socks5://AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
  <name>
 SOCKS5 proxy with too long user name
  </name>
+
+# it should never connect to this server
  <command>
-http://%HOSTIP:%HTTPPORT/716
+http://hohoho.example.com:99/716
 </command>
 </client>
 
