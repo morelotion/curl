@@ -1196,7 +1196,7 @@ CURLUcode curl_url_set(CURLU *u, CURLUPart what,
       return CURLUE_BAD_PORT_NUMBER;
     if(*endp)
       /* weirdly provided number, not good! */
-      return CURLUE_BAD_PORT_NUMBER;
+      return CURLUE_MALFORMED_INPUT;
     storep = &u->port;
   }
   break;

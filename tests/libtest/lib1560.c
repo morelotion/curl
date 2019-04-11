@@ -399,7 +399,7 @@ static struct setcase set_parts_list[] = {
   {"https://host:1234/",
    "port=56 78,",
    "https://host:1234/",
-   0, 0, CURLUE_OK, CURLUE_BAD_PORT_NUMBER},
+   0, 0, CURLUE_OK, CURLUE_MALFORMED_INPUT},
   {"https://host:1234/",
    "port=0,",
    "https://host:1234/",
