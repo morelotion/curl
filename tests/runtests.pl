@@ -3560,6 +3560,7 @@ sub singletest {
                         }
                     }
                     $ENV{$var} = "$content";
+                    print "setenv $var = $content\n" if($verbose);
                 }
             }
         }
