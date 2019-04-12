@@ -397,6 +397,14 @@ static int checkurl(const char *url, const char *out)
 /* !checksrc! disable SPACEBEFORECOMMA 1 */
 static struct setcase set_parts_list[] = {
   {"https://host:1234/",
+   "port=NULL,",
+   "https://host/",
+   0, 0, CURLUE_OK, CURLUE_OK},
+  {"https://host:1234/",
+   "port=\"\",",
+   "https://host:1234/",
+   0, 0, CURLUE_OK, CURLUE_BAD_PORT_NUMBER},
+  {"https://host:1234/",
    "port=56 78,",
    "https://host:1234/",
    0, 0, CURLUE_OK, CURLUE_MALFORMED_INPUT},
@@ -547,6 +555,8 @@ static CURLUcode updateurl(CURLU *u, const char *cmd, unsigned int setflags)
 #endif
         if(!strcmp("NULL", value))
           uc = curl_url_set(u, what, NULL, setflags);
+        else if(!strcmp("\"\"", value))
+          uc = curl_url_set(u, what, "", setflags);
         else
           uc = curl_url_set(u, what, value, setflags);
         if(uc)
